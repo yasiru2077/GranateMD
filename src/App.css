@@ -1,0 +1,39 @@
+:root {
+  --logo-font-size: 24px;
+  --logo-image-size: 100px;
+  --background-color: #F1EEDC;
+}
+
+/* App Component */
+
+.App {
+  background-color: var(--background-color);
+}
+
+/* Logo */
+
+.main-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px;
+}
+
+.app-logo-font {
+  font-size: var(--logo-font-size);
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+}
+
+.app-logo-image {
+  width: var(--logo-image-size);
+}
+
+/* Greetings */
+
+@media screen and (min-width: 500px) and (max-width: 1000px) {
+  .main-logo{
+    padding: 30px 0px;
+  }
+}
