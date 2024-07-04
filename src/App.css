@@ -32,6 +32,129 @@
 
 /* Greetings */
 
+.Greeting > h2 {
+font-size: 48px;
+font-family: "Sedan", serif;
+text-align: center;
+}
+
+.Greeting > h2 > span {
+  text-transform: lowercase;
+}
+
+/* Image upload section */
+
+.image-upload-section{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.image-upload-section span{
+  position: absolute;
+  font-weight:700;
+  border: 1px solid black;
+  top: -15px;
+  background-color:#e2eefa;
+  color: #1c6bbb;
+  border-radius: 5px;
+  font-size: 12px;
+  padding:  5px;
+  margin: 0;
+}
+
+.image-upload-section > input{
+display:none;
+}
+
+.image-upload-section > label{
+  padding: 20px;
+  display: block;
+  width:600px;
+  height: 240px;
+  min-width: 200px;
+  min-height: 200px;
+  background-color:bisque;
+  border-radius: 20px;
+  border: 1px solid black;
+
+}
+
+.image-upload-section > label div{
+
+  width: 100%;
+  height: 100%;
+  border: dotted 3px black;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-upload-section > label div > svg{
+  width: 100px;
+  color: #1c6bbb;
+
+}
+
+.image-upload-section > label div > p{
+  color: #1c6bbb;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* history-cards */
+
+.history-cards-container {
+  max-width: 640px;
+  margin: 50px auto;
+  border-radius: 10px;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  overflow: hidden;
+}
+
+.history-cards-container h2 {
+  text-align: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 20px;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: "Sedan", serif;
+
+}
+
+.card {
+  background-color: bisque;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  font-family: "Sedan", serif;
+
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #555;
+  font-weight: 700;
+  /* text-align: center; */
+}
+
+.card p {
+  color: #777;
+}
+
+
 @media screen and (min-width: 500px) and (max-width: 1000px) {
   .main-logo{
     padding: 30px 0px;
