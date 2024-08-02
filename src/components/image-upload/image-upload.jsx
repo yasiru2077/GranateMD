@@ -1,9 +1,13 @@
 import _ from "lodash";
 import Dropzone, { useDropzone } from "react-dropzone";
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import RemoveSvg from "../globel-components/remove-svg";
 
 
-function ImageUpload({ setUploadedImages, uploadedImages }) {
+function ImageUpload() {
+
+  const [uploadedImages, setUploadedImages] = useState();
+
   const onDrop = (acceptFiles) => {
     const allImages = [...acceptFiles, ...uploadedImages];
     const imageNames = new Set(
@@ -56,6 +60,7 @@ function ImageUpload({ setUploadedImages, uploadedImages }) {
   }
 
   return (
+    <React.Fragment>
     <section className="image-upload-section">
       <span>Add an image</span>
       <label for="myFileInput">
@@ -69,8 +74,12 @@ function ImageUpload({ setUploadedImages, uploadedImages }) {
 
       </label>
       <input type="file" id="myFileInput" accept="image/*" />
-
     </section>
+    <section className="view-image w-full ">
+      <RemoveSvg/>
+    <img src="https://images.pexels.com/photos/220769/pexels-photo-220769.jpeg?cs=srgb&dl=pexels-pixabay-220769.jpg&fm=jpg" alt="" />
+    </section>
+    </React.Fragment>
   )
 }
 

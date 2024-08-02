@@ -1,14 +1,16 @@
-import { useState } from "react";
 import "./App.css";
 import MainLogo from "./components/globel-components/main-logo";
 import Greeting from "./components/greetings/greeting";
 import ImageUpload from "./components/image-upload/image-upload";
 import HistoryCards from "./components/history-cards/history-cards";
+import Footer from "./components/globel-components/footer";
+
+
 
 // https://github.com/yasiruAtHippohotels
 function App() {
-  const [uploadedImages, setUploadedImages] = useState();
 
+ 
   return (
     <div className="App">
 
@@ -16,8 +18,9 @@ function App() {
       {/* <HomePage/> */}
       <section>
         <Greeting />
-        <ImageUpload uploadedImages={uploadedImages} setUploadedImages={setUploadedImages} />
+        <ImageUpload/>
         <HistoryCards />
+        <Footer/>
       </section>
     </div>
   );
