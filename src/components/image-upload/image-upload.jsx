@@ -8,6 +8,7 @@ function ImageUpload() {
 
   const [uploadedImages, setUploadedImages] = useState();
 
+
   const onDrop = (acceptFiles) => {
     const allImages = [...acceptFiles, ...uploadedImages];
     const imageNames = new Set(
@@ -32,6 +33,8 @@ function ImageUpload() {
         images: [...prevFiles.images, ...newFiles],
       }));
     }
+    
+    
   }
 
   const { getRootProps, isDragActive } = useDropzone({
@@ -75,9 +78,9 @@ function ImageUpload() {
       </label>
       <input type="file" id="myFileInput" accept="image/*" />
     </section>
-    <section className="view-image w-full ">
+    <section className="view-image">
       <RemoveSvg/>
-    <img src="https://images.pexels.com/photos/220769/pexels-photo-220769.jpeg?cs=srgb&dl=pexels-pixabay-220769.jpg&fm=jpg" alt="" />
+    <img className="detecting-image" src="https://images.pexels.com/photos/220769/pexels-photo-220769.jpeg?cs=srgb&dl=pexels-pixabay-220769.jpg&fm=jpg" alt="" />
     </section>
     </React.Fragment>
   )
