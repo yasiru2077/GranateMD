@@ -123,12 +123,12 @@ display:none;
   position: relative;
 }
 
-.view-image > img{
+.view-image > .detecting-image{
   border-radius: 8px;
   object-fit:cover;
 }
 
-.view-image > div { 
+.view-image > .close-btn { 
   position: absolute;
   top: 30px;
   right: 30px;
@@ -141,6 +141,8 @@ display:none;
 } */
 
 
+
+
 @media (max-width:650px) {
   .view-image {
     margin: 50px 20px;
@@ -149,7 +151,7 @@ display:none;
 
 
 @media (max-width:500px) {
-  .view-image > div > svg {
+  .view-image > .close-btn {
     max-width: 25px;
     max-height: 25px;
   }

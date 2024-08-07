@@ -2,8 +2,8 @@ import React from "react";
 
 function RemoveSvg() {
   return (
-    <div>
-      <svg className="close-btn"
+    <div className="close-btn">
+      <svg 
         xmlns="http://www.w3.org/2000/svg"
         width="30px"
         height="30px"
