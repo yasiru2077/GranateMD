@@ -124,6 +124,7 @@ display:none;
 }
 
 .view-image > .detecting-image{
+  width: 100%;
   border-radius: 8px;
   object-fit:cover;
 }

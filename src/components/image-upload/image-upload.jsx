@@ -80,7 +80,7 @@ function ImageUpload() {
     </section>
     <section className="view-image">
       <RemoveSvg/>
-    <img className="detecting-image" src="https://images.pexels.com/photos/220769/pexels-photo-220769.jpeg?cs=srgb&dl=pexels-pixabay-220769.jpg&fm=jpg" alt="" />
+    <img className="detecting-image" src="https://blog.fasal.co/wp-content/uploads/2023/06/041c7-3.jpg" alt="" />
     </section>
     </React.Fragment>
   )
