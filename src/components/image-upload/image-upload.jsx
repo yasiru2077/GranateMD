@@ -6,18 +6,17 @@ import RemoveSvg from "../globel-components/remove-svg";
 
 function ImageUpload() {
 
-  const [uploadedImage, setuploadedImage] = useState(null);
-
+  const [uploadedImage, setuploadedImage] = useState([]);
   
 
   const onDrop = (acceptFiles) => {
   
-   
-    const allImages = [...acceptFiles, ...uploadedImage];
+   console.log(acceptFiles.map(file =>file.name));
+    const allImages = [...acceptFiles, ...uploadedImage.images];
     const imageNames = new Set(
       uploadedImage.map((img) => img.name.toLowerCase())
     );
-    
+
     const newFiles = allImages.filter((file) => {
       
       const normalizedName = file.name.toLowerCase();
@@ -37,7 +36,6 @@ function ImageUpload() {
         images: [...prevFiles.images, ...newFiles],
       }));
     }
-    
     
   }
 
