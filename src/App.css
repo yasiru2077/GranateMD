@@ -123,6 +123,11 @@ display:none;
   position: relative;
 }
 
+
+.view-imageOn{
+  display: none;
+}
+
 .view-image > .detecting-image{
   width: 100%;
   border-radius: 8px;
@@ -134,6 +139,7 @@ display:none;
   top: 30px;
   right: 30px;
   opacity: 1;
+  cursor: pointer;
 }
 
 /* .detecting-image:hover, .view-image > div{
