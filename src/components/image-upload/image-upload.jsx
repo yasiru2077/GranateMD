@@ -2,50 +2,40 @@ import _ from "lodash";
 import Dropzone, { useDropzone } from "react-dropzone";
 import React, { useCallback, useEffect, useState } from 'react'
 import RemoveSvg from "../globel-components/remove-svg";
+import Button from "../globel-components/button";
 
 
 function ImageUpload() {
 
   const [uploadedImage, setuploadedImage] = useState([]);
-  const [changeClass,setChangeClass] = useState(false);
 
-  const onDrop = useCallback((acceptedFiles,rejectedFiles) => {
-  
-  //  console.log(acceptFiles.map(file =>file.name));
-  //   const allImages = [...acceptFiles, ...uploadedImage.images];
-  //   const imageNames = new Set(
-  //     uploadedImage.map((img) => img.name.toLowerCase())
-  //   );
 
-  //   const newFiles = allImages.filter((file) => {
-      
-  //     const normalizedName = file.name.toLowerCase();
-  //     if (imageNames.has(normalizedName)) {
-  //       return false;
-  //     } else {
-  //       imageNames.add(normalizedName);               
-  //       return true;
-  //     }
-  //   })
+  console.log(uploadedImage);
+
+  const onDrop = useCallback((acceptedFiles) => { 
   
-  console.log(acceptedFiles);
+
   if (acceptedFiles?.length) {
 
-    if(acceptedFiles?.length===1){
-      setuploadedImage(previousFiles => [
-        ...previousFiles,
-        ...acceptedFiles.map(file =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        )
-      ]);
-    }
+  setuploadedImage(previousFiles => [
+    ...previousFiles,
+    ...acceptedFiles.map(file =>
+      Object.assign(file, { preview: URL.createObjectURL(file) })
+    )
+  ]);
 
-    setChangeClass(true);
-  }
-
-  console.log(acceptedFiles.length);
-    
+  
+     
+  }     
   },[])
+
+  useEffect(() => {
+    if(uploadedImage?.length > 1){
+      const onlyLatestImage = uploadedImage.slice(uploadedImage?.length - 1); 
+      setuploadedImage(onlyLatestImage);
+      
+    }
+  },[uploadedImage])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
@@ -55,28 +45,9 @@ function ImageUpload() {
     onDrop,
   });
 
-  useEffect(() => {
-    return () => {
-      uploadedImage?.forEach((file) => URL.revokeObjectURL(file.preview));
-    }
-  }, [uploadedImage]);
-
   const removeFile = (name) => {
-    // setuploadedImage((prev) => {
-    //   const newImages = prev.images.filter((file) => file.name !== name);
-    //   if (newImages.length <= 8 && errors.images) {
-    //     setErrors((prev) => ({ ...prev, images: nulls }))
-    //   }
-    //   return {
-    //     ...prev,
-    //     images: newImages,
-    //   };
-    // });
-    setuploadedImage((prev) => prev.filter((file) => file.name !== name),setChangeClass(false));
+    setuploadedImage((prev) => prev.filter((file) => file.name !== name));
   }
-
-
-
 
 
 
@@ -98,16 +69,19 @@ function ImageUpload() {
       </label>
       {/* <input  type="file" id="myFileInput" accept="image/*" /> */}
     </section>
-    <section className={changeClass ? "view-image" : "view-imageOn"}>
+    <section className={uploadedImage.length > 0 ? "view-image" : "view-imageOn"}>
     {uploadedImage.map(file=>(
-      <>
+      <React.Fragment>
       <RemoveSvg onRemove={()=>removeFile(file.name)}/>
     {/* <button type="submit">Submit</button> */}
       <img key={file.name} className="detecting-image" src={file.preview} alt={file.name} onLoad={() => {
         URL.revokeObjectURL(file.preview);
-      } } /></>
+      } } /></React.Fragment>
     ))}
+    
+   <Button/>
     </section>
+
     </form>
     </React.Fragment>
   )

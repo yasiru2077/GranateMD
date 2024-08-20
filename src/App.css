@@ -85,7 +85,6 @@ display:none;
 }
 
 .image-upload-section > label div{
-
   width: 100%;
   height: 100%;
   border: dotted 3px black;
@@ -99,7 +98,7 @@ display:none;
 .image-upload-section > label div > svg{
   width: 100px;
   color: #1c6bbb;
-
+ 
 }
 
 .image-upload-section > label div > p{
@@ -132,14 +131,16 @@ display:none;
   width: 100%;
   border-radius: 8px;
   object-fit:cover;
+  border: 2px dotted  black;
 }
 
 .view-image > .close-btn { 
   position: absolute;
   top: 30px;
   right: 30px;
-  opacity: 1;
   cursor: pointer;
+  background-color: #333;
+  border-radius: 100%;
 }
 
 /* .detecting-image:hover, .view-image > div{
@@ -148,7 +149,31 @@ display:none;
 } */
 
 
+/* submit btn */
 
+.detection-btn{
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: center;
+}
+
+.detection-btn > button{
+  background-color: bisque;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid black;
+  
+}
+
+@media (max-width: 650px) {
+  .detection-btn > button{
+    font-size:14px;
+  }
+}
 
 @media (max-width:650px) {
   .view-image {

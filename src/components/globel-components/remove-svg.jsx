@@ -10,6 +10,7 @@ function RemoveSvg({onRemove}) {
         height="30px"
         viewBox="0 0 24 24"
         fill="none"
+        
       >
         <g id="SVGRepo_bgCarrier" stroke-width="0" />
 
