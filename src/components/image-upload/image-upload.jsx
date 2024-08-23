@@ -8,12 +8,34 @@ import Button from "../globel-components/button";
 function ImageUpload() {
 
   const [uploadedImage, setuploadedImage] = useState([]);
+  const [predictionResult, setPredictionResult] = useState(null);
 
+  let disease;
+
+  switch (predictionResult) {
+    case "Alternaria":
+      disease = "Alternaria";
+      break;
+    case "Anthracnose":
+      disease = "Anthracnose";
+      break;
+    case "Bacterial_Blight":
+      disease = "Bacterial Blight";
+      break;
+    case "Cercospora":
+      disease = "Cercospora";
+      break;
+    case "Healthy":
+      disease = "Healthy";
+      break;
+    default:
+      disease = "Unknown input";
+      break;
+  }
 
   console.log(uploadedImage);
 
   const onDrop = useCallback((acceptedFiles) => { 
-  
 
   if (acceptedFiles?.length) {
 
@@ -49,11 +71,42 @@ function ImageUpload() {
     setuploadedImage((prev) => prev.filter((file) => file.name !== name));
   }
 
+  const handleSubmit = async () => {
+    if (uploadedImage.length === 0) return;
 
+    const formData = new FormData();
+    formData.append('fileup', uploadedImage[0]);
+
+    try {
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const contentType = response.headers.get('content-type');
+        console.log('Response Content-Type:', contentType);
+
+        if (!contentType || !contentType.includes('application/json')) {
+            console.log('Response Text:', await response.text());
+            setPredictionResult('Unexpected response format, expected JSON.');
+            return;
+        }
+
+        const data = await response.json();
+        if (response.ok) {
+            // setPredictionResult(`Prediction: ${data.prediction} with confidence ${data.confidence.toFixed(2)}`);
+            setPredictionResult(`${data.prediction}`);
+        } else {
+            setPredictionResult(`Error: ${data.error}`);
+        }
+    } catch (error) {
+        setPredictionResult(`Error: ${error.message}`);
+    }
+  }
 
   return (
     <React.Fragment>
-      <form action="">
+    
     <section className="image-upload-section">
       <span>Add an image</span>
       <label {...getRootProps()} for="myFileInput">
@@ -79,10 +132,12 @@ function ImageUpload() {
       } } /></React.Fragment>
     ))}
     
-   <Button/>
+    <div className='detection-btn' onClick={handleSubmit}>
+        <button type='submit'>Detect</button>
+    </div>
     </section>
-
-    </form>
+    {predictionResult && <div>{disease}</div>}
+   
     </React.Fragment>
   )
 }

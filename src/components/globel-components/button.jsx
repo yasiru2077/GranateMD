@@ -1,11 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-function Button() {
-  return (
-    <div className='detection-btn'>
-        <button type='submit'>Detect</button>
-    </div>
-  )
-}
+// function Button() {
+//   return (
+  
+//   )
+// }
 
-export default Button;
+// export default Button;
