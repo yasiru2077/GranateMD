@@ -1,8 +1,7 @@
 :root {
   --logo-font-size: 24px;
   --logo-image-size: 100px;
-  --background-color: #F1EEDC;
-  
+  --background-color: #f1eedc;
 }
 
 /* App Component */
@@ -34,9 +33,9 @@
 /* Greetings */
 
 .Greeting > h2 {
-font-size: 48px;
-font-family: "Sedan", serif;
-text-align: center;
+  font-size: 48px;
+  font-family: "Sedan", serif;
+  text-align: center;
 }
 
 .Greeting > h2 > span {
@@ -45,7 +44,7 @@ text-align: center;
 
 /* Image upload section */
 
-.image-upload-section{
+.image-upload-section {
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -54,37 +53,37 @@ text-align: center;
   margin-right: 20px;
 }
 
-.image-upload-section span{
+.image-upload-section span {
   position: absolute;
-  font-weight:700;
+  font-weight: 700;
   border: 1px solid black;
   top: -15px;
-  background-color:#e2eefa;
+  background-color: #e2eefa;
   color: #1c6bbb;
   border-radius: 5px;
   font-size: 12px;
-  padding:  5px;
+  padding: 5px;
   margin: 0;
 }
 
-.image-upload-section > input{
-display:none;
+.image-upload-section > input {
+  display: none;
 }
 
-.image-upload-section > label{
+.image-upload-section > label {
   padding: 20px;
   display: block;
-  width:600px;
+  width: 600px;
   height: 240px;
   min-width: 200px;
   min-height: 200px;
-  background-color:bisque;
+  background-color: bisque;
   border-radius: 20px;
   border: 1px solid black;
   cursor: pointer;
 }
 
-.image-upload-section > label div{
+.image-upload-section > label div {
   width: 100%;
   height: 100%;
   border: dotted 3px black;
@@ -95,53 +94,50 @@ display:none;
   align-items: center;
 }
 
-.image-upload-section > label div > svg{
+.image-upload-section > label div > svg {
   width: 100px;
   color: #1c6bbb;
- 
 }
 
-.image-upload-section > label div > p{
+.image-upload-section > label div > p {
   color: #1c6bbb;
   font-weight: 600;
   text-align: center;
 }
 
-
 /* view-image section */
 
-.view-image{
+.view-image {
   max-width: 600px;
   min-width: 200px;
   margin: 50px auto;
-  padding:20px;
-  background-color:bisque;
+  padding: 20px;
+  background-color: bisque;
   border: black solid 1px;
   border-radius: 8px;
   display: grid;
   position: relative;
 }
 
-
-.view-imageOn{
+.view-imageOn {
   display: none;
 }
 
-.view-image > .detecting-image{
+.view-image > .detecting-image {
   width: 100%;
   border-radius: 8px;
-  object-fit:cover;
-  border: 2px dotted  black;
+  object-fit: cover;
+  border: 2px dotted black;
 }
 
-.view-image > .close-btn { 
+.view-image > .close-btn {
   position: absolute;
   top: 30px;
   right: 30px;
   cursor: pointer;
   background-color: #333;
   border-radius: 100%;
- z-index: 40;
+  z-index: 40;
 }
 
 /* .detecting-image:hover, .view-image > div{
@@ -149,20 +145,19 @@ display:none;
   opacity: 1;
 } */
 
-
 /* submit btn */
 
-.detection-btn{
- position: absolute;
- width: 100%;
- height: 100%;
- display: flex;
- flex-direction: row;
- align-items: center;
- justify-content: center;
+.detection-btn {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.detection-btn > button{
+.detection-btn > button {
   background-color: bisque;
   padding: 10px 20px;
   border-radius: 8px;
@@ -171,26 +166,55 @@ display:none;
 }
 
 @media (max-width: 650px) {
-  .detection-btn > button{
-    font-size:14px;
+  .detection-btn > button {
+    font-size: 14px;
   }
 }
 
-@media (max-width:650px) {
+@media (max-width: 650px) {
   .view-image {
     margin: 50px 20px;
   }
 }
 
-
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .view-image > .close-btn {
     max-width: 25px;
     max-height: 25px;
   }
 }
 
+/* treatment container */
 
+.treatment-container-on {
+  display: block;
+  max-width: 600px;
+  margin: 50px auto;
+  font-family: "Sedan", serif;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.treatment-container-off {
+  display: none;
+}
+
+.name-and-Symptoms > h2{
+  font-size: 20px;
+  font-weight: 600;
+  
+}
+
+.treatment-container-on h3{
+  font-size: 18px;
+  padding: 10px 0px;
+}
+
+.treatment-container-on h4{
+  font-size: 16px;
+  padding: 10px 0px;
+}
 
 /* history-cards */
 
@@ -210,7 +234,6 @@ display:none;
   font-size: 20px;
   /* font-family: "Raleway", sans-serif; */
   font-family: "Sedan", serif;
-
 }
 
 .card {
@@ -222,7 +245,6 @@ display:none;
   border: black solid 1px;
   transition: transform 0.3s ease;
   font-family: "Sedan", serif;
-
 }
 
 .card:hover {
@@ -242,16 +264,15 @@ display:none;
 
 /* footer */
 
-footer{
+footer {
   color: #333;
   text-align: center;
   font-family: "Sedan", serif;
-  padding:0 0 30px 0;
-
+  padding: 0 0 30px 0;
 }
 
 @media screen and (min-width: 500px) and (max-width: 1000px) {
-  .main-logo{
+  .main-logo {
     padding: 30px 0px;
   }
 }
