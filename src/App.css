@@ -276,3 +276,9 @@ footer {
     padding: 30px 0px;
   }
 }
+
+@media (max-width:636px) {
+  .treatment-container-on{
+  margin: 20px;
+  }
+}

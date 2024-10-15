@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import RemoveSvg from "../globel-components/remove-svg";
 import Button from "../globel-components/button";
 import { treatment } from "../../data-files/treatments-and-preventions";
+import "./image-upload.css";
 
 function ImageUpload() {
   const [uploadedImage, setuploadedImage] = useState([]);
@@ -31,8 +32,6 @@ function ImageUpload() {
       disease = "Unknown input";
       break;
   }
-
-  console.log(uploadedImage);
 
   const onDrop = useCallback((acceptedFiles) => {
     if (acceptedFiles?.length) {
@@ -77,7 +76,6 @@ function ImageUpload() {
       });
 
       const contentType = response.headers.get("content-type");
-      console.log("Response Content-Type:", contentType);
 
       if (!contentType || !contentType.includes("application/json")) {
         console.log("Response Text:", await response.text());
@@ -95,11 +93,17 @@ function ImageUpload() {
     } catch (error) {
       setPredictionResult(`Error: ${error.message}`);
     }
+   
   };
 
   const selectedDisease = treatment.plant_diseases.find(
     (d) => d.name.toLowerCase() === disease.toLowerCase()
   );
+
+  useEffect(()=>{
+    const element = document.getElementById("content");
+    element.scrollIntoView();
+  },[predictionResult])
 
   return (
     <React.Fragment>
@@ -156,17 +160,15 @@ function ImageUpload() {
           <button type="submit">Detect</button>
         </div>
       </section>
-      <section
+      <section id="content"
         className={
-          uploadedImage.length > 0
-            ? "treatment-container-on"
-            : "treatment-container-off"
+          selectedDisease ? "treatment-container-on" : "treatment-container-off"
         }
       >
         {selectedDisease && (
           <div>
             <div className="name-and-Symptoms">
-              <h2>{selectedDisease.name}</h2>
+              <h2 className="testtype">{selectedDisease.name}</h2>
               <h3>Symptoms:</h3>
               <ul>
                 {selectedDisease.symptoms.map((symptom, index) => (
