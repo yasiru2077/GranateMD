@@ -103,7 +103,7 @@ export let treatment = {
         }
       },
       {
-        "name": "Cercospora (Cercospora Leaf Spot)",
+        "name": "Cercospora",
         "symptoms": [
           "Small, round to irregular brown spots on leaves, often with a gray or white center.",
           "Spots may coalesce, leading to large areas of dead tissue and eventual leaf drop.",

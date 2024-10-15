@@ -96,6 +96,8 @@ function ImageUpload() {
    
   };
 
+  console.log(predictionResult);
+
   const selectedDisease = treatment.plant_diseases.find(
     (d) => d.name.toLowerCase() === disease.toLowerCase()
   );
@@ -104,6 +106,8 @@ function ImageUpload() {
     const element = document.getElementById("content");
     element.scrollIntoView();
   },[predictionResult])
+
+  console.log(selectedDisease);
 
   return (
     <React.Fragment>
