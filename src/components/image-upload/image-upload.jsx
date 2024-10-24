@@ -9,6 +9,28 @@ import "./image-upload.css";
 function ImageUpload() {
   const [uploadedImage, setuploadedImage] = useState([]);
   const [predictionResult, setPredictionResult] = useState(null);
+  const [changePrediction, setChangePrediction] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [diseaseName, setDiseaseName] = useState('');
+  const [diseaseSymptoms, setDiseaseSymptoms] = useState('');
+
+  const typingSpeed = 100;
+
+  useEffect(() => {
+    if (predictionResult && index < predictionResult.length) {
+      const timer = setTimeout(() => {
+        setDiseaseName((prev) => prev + predictionResult[index]);
+        setIndex((prev) => prev + 1);
+      }, typingSpeed);
+
+      return () => clearTimeout(timer);
+    }
+  }, [index, changePrediction, typingSpeed]);
+
+  useEffect(() => {
+    setDiseaseName('');
+    setIndex(0);
+  }, [changePrediction]);
 
   let disease;
 
@@ -93,21 +115,23 @@ function ImageUpload() {
     } catch (error) {
       setPredictionResult(`Error: ${error.message}`);
     }
-   
+
+    setChangePrediction(!changePrediction);
+
   };
 
-  console.log(predictionResult);
 
   const selectedDisease = treatment.plant_diseases.find(
     (d) => d.name.toLowerCase() === disease.toLowerCase()
   );
 
-  useEffect(()=>{
+  useEffect(() => {
     const element = document.getElementById("content");
     element.scrollIntoView();
-  },[predictionResult])
+  }, [changePrediction])
 
-  console.log(selectedDisease);
+
+
 
   return (
     <React.Fragment>
@@ -172,7 +196,7 @@ function ImageUpload() {
         {selectedDisease && (
           <div>
             <div className="name-and-Symptoms">
-              <h2 className="testtype">{selectedDisease.name}</h2>
+              <h2 className="testtype">{diseaseName}</h2>
               <h3>Symptoms:</h3>
               <ul>
                 {selectedDisease.symptoms.map((symptom, index) => (

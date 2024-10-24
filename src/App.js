@@ -7,7 +7,6 @@ import Footer from "./components/globel-components/footer";
 
 
 
-// https://github.com/yasiruAtHippohotels
 function App() {
 
  
