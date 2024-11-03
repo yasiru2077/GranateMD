@@ -5,14 +5,47 @@ import RemoveSvg from "../globel-components/remove-svg";
 import Button from "../globel-components/button";
 import { treatment } from "../../data-files/treatments-and-preventions";
 import "./image-upload.css";
+import { treatmentSinhala } from "../../data-files/treatments-sinhala";
 
 function ImageUpload() {
   const [uploadedImage, setuploadedImage] = useState([]);
   const [predictionResult, setPredictionResult] = useState(null);
   const [changePrediction, setChangePrediction] = useState(false);
   const [index, setIndex] = useState(0);
-  const [diseaseName, setDiseaseName] = useState('');
-  const [diseaseSymptoms, setDiseaseSymptoms] = useState('');
+  const [diseaseName, setDiseaseName] = useState("");
+  const [isEnglish, setIsEnglish] = useState(true);
+  const [speaking, setSpeaking] = useState(false);
+
+  const handleSpeech = () => {
+    if (speaking) {
+      window.speechSynthesis.cancel(); // Stop any ongoing speech
+      setSpeaking(false);
+      return;
+    }
+
+    // If language is not English, alert the user
+    if (!isEnglish) {
+      const utterance = new SpeechSynthesisUtterance("Sorry, I can't speak in Sinhala.");
+      utterance.lang = "en-US"; // Use English language for the alert message
+      utterance.onstart = () => setSpeaking(true);
+      utterance.onend = () => setSpeaking(false);
+      window.speechSynthesis.speak(utterance);
+      return;
+    }
+
+    // Generate the text to read aloud
+    const text = `Symptoms: ${selectedDisease.symptoms.join(", ")}. Treatment includes cultural practices like ${selectedDisease.treatment.cultural_practices
+      .map((p) => `${p.practice}: ${p.description}`)
+      .join(", ")} and chemical control methods like ${selectedDisease.treatment.chemical_control
+      .map((c) => `${c.method}: ${c.description}`)
+      .join(", ")}.`;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US"; // English language
+    utterance.onstart = () => setSpeaking(true);
+    utterance.onend = () => setSpeaking(false);
+    window.speechSynthesis.speak(utterance);
+  };
 
   const typingSpeed = 100;
 
@@ -28,7 +61,7 @@ function ImageUpload() {
   }, [index, changePrediction, typingSpeed]);
 
   useEffect(() => {
-    setDiseaseName('');
+    setDiseaseName("");
     setIndex(0);
   }, [changePrediction]);
 
@@ -117,21 +150,29 @@ function ImageUpload() {
     }
 
     setChangePrediction(!changePrediction);
-
   };
 
+ let selectedDisease;
 
-  const selectedDisease = treatment.plant_diseases.find(
-    (d) => d.name.toLowerCase() === disease.toLowerCase()
-  );
+  if(isEnglish){
+    selectedDisease = treatment.plant_diseases.find(
+      (d) => d.name.toLowerCase() === disease.toLowerCase()
+    );
+  }else{
+    selectedDisease = treatmentSinhala.plant_diseases.find(
+      (d) => d.name.toLowerCase() === disease.toLowerCase()
+    );
+  }
+  
 
   useEffect(() => {
     const element = document.getElementById("content");
     element.scrollIntoView();
-  }, [changePrediction])
+  }, [changePrediction]);
 
-
-
+  function changeLanguage() {
+    setIsEnglish(!isEnglish);
+  }
 
   return (
     <React.Fragment>
@@ -188,7 +229,8 @@ function ImageUpload() {
           <button type="submit">Detect</button>
         </div>
       </section>
-      <section id="content"
+      <section
+        id="content"
         className={
           selectedDisease ? "treatment-container-on" : "treatment-container-off"
         }
@@ -196,7 +238,25 @@ function ImageUpload() {
         {selectedDisease && (
           <div>
             <div className="name-and-Symptoms">
-              <h2 className="testtype">{diseaseName}</h2>
+              <div className="flex justify-between align-middle">
+                <h2 className="testtype text-[30px] font-bold">{diseaseName}</h2>
+               <div className="">
+               <button
+                  className="bg-black text-white m-2 p-1 rounded"
+                  onClick={changeLanguage}
+                >
+                  {isEnglish ? "සිංහල" : "English"}
+                </button>
+                <button
+                className="bg-green-500 text-white m-2 p-1 rounded"
+                onClick={handleSpeech}
+              >
+                {speaking ? "Stop Speech" : "Play Speech"}
+              </button>
+               </div>
+              
+              
+              </div>
               <h3>Symptoms:</h3>
               <ul>
                 {selectedDisease.symptoms.map((symptom, index) => (
@@ -206,8 +266,8 @@ function ImageUpload() {
             </div>
 
             <div className="Treatment">
-              <h3>Treatment:</h3>
-              <h4>Cultural Practices</h4>
+              <h3>{isEnglish ? "Treatment":"ප්‍රතිකාර"}:</h3>
+              <h4>{isEnglish ? "Cultural Practices":"සංස්කෘතික ක්‍රියාකාරකම්"}</h4>
               <ul>
                 {selectedDisease.treatment.cultural_practices.map(
                   (practice, index) => (
@@ -218,7 +278,7 @@ function ImageUpload() {
                   )
                 )}
               </ul>
-              <h4>Chemical Control</h4>
+              <h4>{isEnglish ? "Chemical Control":"රසායනික පාලනය"}</h4>
               <ul>
                 {selectedDisease.treatment.chemical_control.map(
                   (control, index) => (

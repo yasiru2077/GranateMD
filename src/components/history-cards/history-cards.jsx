@@ -63,7 +63,7 @@ const HistoryCards = () => {
 
   return (
     <>
-      <div className="max-w-2xl mx-auto my-12 rounded-lg p-5">
+      <div className="max-w-2xl mx-auto my-12 rounded-lg p-6">
         <h2 className="text-center text-xl font-bold mb-6 font-serif text-gray-800">
           History
         </h2>
