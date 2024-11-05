@@ -1,0 +1,24 @@
+
+@media (max-width:640px) {
+    .tooltip-container{
+        left: 10px;
+      
+    }
+    .tip{
+        left: 12px;
+    }
+}
+
+@media (max-width:400px) {
+    .tooltip-container{
+       width: 150px;
+      
+    }
+}
+
+@media (max-width:350px) {
+    .tooltip-container{
+       width: 120px;
+      
+    }
+}
